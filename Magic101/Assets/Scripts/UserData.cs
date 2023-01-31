@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class UserData : MonoBehaviour
 {
     public string[] cur_spells;
     public bool can_cast;
-    public Scene scene;
     
     // Start is called before the first frame update
     void Start()
@@ -20,7 +19,6 @@ public class UserData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scene = SceneManager.GetActiveScene();
     }
 
     public void CheckSpellAva(string spell)
@@ -63,10 +61,6 @@ public class UserData : MonoBehaviour
         cur_spells[6] = "Storm";
     }
 
-    void JumpNextScene()
-    {
-        SceneManager.LoadScene(scene.buildIndex + 1);
-    }
 
 
 }

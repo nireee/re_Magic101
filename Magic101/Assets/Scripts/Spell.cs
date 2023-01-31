@@ -8,7 +8,7 @@ public class Spell : MonoBehaviour
     public float _interval = 3f;
     float _time;
     public TMPro.TMP_Text tmp;
-    private string spell;
+    public string spell;
     private string spell_default;
     private string spell_hold;
 
@@ -34,7 +34,7 @@ public class Spell : MonoBehaviour
                 ud.can_cast = false;
             }
             _time -= _interval;
-            spell = spell_default; 
+            spell = spell_default;
         }
           
     }
@@ -42,7 +42,7 @@ public class Spell : MonoBehaviour
     void CastSpell()
     {
         spell_hold = spell;
-        tmp.text = spell_hold;
+        //tmp.text = spell_hold;
         CheckUnlock(spell);
     }
 

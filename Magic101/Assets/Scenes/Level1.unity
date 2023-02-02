@@ -766,11 +766,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3ecdabb5f122543917cf8de288cf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interval: 3
-  FireVFX: {fileID: 5601949517734312194, guid: 946c518bd50b8a741ae34cfa68947162, type: 3}
+  _interval: 1
+  FireVFX: {fileID: 100004, guid: 7cd1375947181944cbc04a9efde7d3b4, type: 3}
   WaterVFX: {fileID: 5601949517734312194, guid: 946c518bd50b8a741ae34cfa68947162,
     type: 3}
-  EarthVFX: {fileID: 5601949517734312194, guid: 946c518bd50b8a741ae34cfa68947162,
+  EarthVFX: {fileID: 8205706795460263314, guid: 326e86d5729c54e479798cacab220bb2,
     type: 3}
   WindVFX: {fileID: 5601949517734312194, guid: 946c518bd50b8a741ae34cfa68947162, type: 3}
   sp: {fileID: 990029338}

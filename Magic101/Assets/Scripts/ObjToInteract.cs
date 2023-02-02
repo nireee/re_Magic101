@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ObjToInteract : MonoBehaviour
 {
-    public float _interval = 2f;
-    float _time;
     private Vector3 pos;
     public GameObject FireVFX;
     public GameObject WaterVFX;
@@ -32,43 +30,23 @@ public class ObjToInteract : MonoBehaviour
         if (spell == "Fire")
         {
             Instantiate(FireVFX, pos, Quaternion.identity);
-            Destroy(gameObject, 3);
+            Destroy(gameObject, 1);
         }
 
         else if(spell == "Earth")
         {
-            GameObject vfx;
-            vfx = Instantiate(EarthVFX, pos, Quaternion.identity);
-            _time += Time.deltaTime;
-            while (_time >= _interval)
-            {
-                Destroy(vfx);
-                _time -= _interval;
-            }
+            Instantiate(EarthVFX, pos, Quaternion.identity);
         }
 
         else if (spell == "Water")
         {
-            GameObject vfx;
-            vfx = Instantiate(WaterVFX, pos, Quaternion.identity);
-            _time += Time.deltaTime;
-            while (_time >= _interval)
-            {
-                Destroy(vfx);
-                _time -= _interval;
-            }
+             Instantiate(WaterVFX, pos, Quaternion.identity);
+          
         }
 
         else if (spell == "Wind")
         {
-            GameObject vfx;
-            vfx = Instantiate(WindVFX, pos, Quaternion.identity);
-            _time += Time.deltaTime;
-            while (_time >= _interval)
-            {
-                Destroy(vfx);
-                _time -= _interval;
-            }
+            Instantiate(WindVFX, pos, Quaternion.identity);
         }
         else
         {

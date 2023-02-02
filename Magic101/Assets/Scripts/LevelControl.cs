@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +8,6 @@ public class LevelControl : MonoBehaviour
     public Spell sp;
     public string cur_spell;
     public Scene scene;
-
-    public TMPro.TMP_Text tmp;
-    public string text_to_display;
-
-    public bool goNextLevel;
 
     GameObject burn_out_rock;
     GameObject water_to_rise;
@@ -27,21 +21,23 @@ public class LevelControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        scene = SceneManager.GetActiveScene();
+    {
         cur_spell = sp.spell;
         CheckLevel();
-       
+        scene = SceneManager.GetActiveScene();
+
     }
 
     void CheckLevel()
     {
         if(scene.buildIndex == 0)
         {
+            
             GetEarthLevel();
         }
         else if(scene.buildIndex == 1)
         {
+            water_to_rise = GameObject.Find("WaterVFX");
             GetWaterLevel();
         }
         else if(scene.buildIndex == 2)
@@ -57,72 +53,46 @@ public class LevelControl : MonoBehaviour
     void GetEarthLevel()
     {
         burn_out_rock = GameObject.Find("BurnOutRock");
-        if(burn_out_rock == null && goNextLevel == false)
+        if(burn_out_rock == null)
         {
             Debug.Log("Get Earth!");
-            DisplayText("You received element: Earth!");
-            goNextLevel = true;
-            Invoke("JumpNextScene", 3);
+            JumpNextScene();
         }
         
     }
 
-    void DisplayText(string txt)
-    {
-        if (goNextLevel == false)
-        {
-            tmp.text = txt;
-        }
-    }
-
     void GetWaterLevel()
     {
-        water_to_rise = GameObject.Find("WaterVFX");
-        if (count > 3 && goNextLevel == false)
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Get Water!");
-            DisplayText("You received element: Water!");
-            goNextLevel = true;
-            Invoke("JumpNextScene", 3);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            count += 1;
-            water_to_rise.transform.position = new Vector3(water_to_rise.transform.position.x, water_to_rise.transform.position.y + 0.2f, water_to_rise.transform.position.z);
+            if(count < 3)
+            {
+                water_to_rise.transform.position= new Vector3(water_to_rise.transform.position.x, water_to_rise.transform.position.y + 0.2f, water_to_rise.transform.position.z);
+                count += 1;
+            }
+            else
+            {
+                JumpNextScene();
+            }
         }
     }
 
     void GetWindLevel()
     {
-        if (Input.GetKeyDown(KeyCode.W) && goNextLevel == false)
+        if (Input.GetKeyDown(KeyCode.W))
         {
             //get wind
-            Debug.Log("Get Wind!");
-            DisplayText("You received element: Wind!");
-            goNextLevel = true;
-            Invoke("JumpNextScene", 3);
+            JumpNextScene();
         }
     }
 
     void GymLevel()
     {
-        //check if interactable obj still exist, if not, reset the scene/ instatiate a new interactable obj
+
     }
 
     void JumpNextScene()
     {
-       if(goNextLevel == true)
-        {
-            goNextLevel = false;
-            Debug.Log("LoadNextScene!");
-            SceneManager.LoadScene(scene.buildIndex + 1);
-            DisplayText("");
-        }
-
-    }
-
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(scene.buildIndex);
+        SceneManager.LoadScene(scene.buildIndex + 1);
     }
 }

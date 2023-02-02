@@ -7,7 +7,7 @@ public class Spell : MonoBehaviour
 {
     public float _interval = 3f;
     float _time;
-    //public TMPro.TMP_Text tmp;
+    public TMPro.TMP_Text tmp;
     public string spell;
     private string spell_default;
     private string spell_hold;
